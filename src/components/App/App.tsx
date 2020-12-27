@@ -1,6 +1,7 @@
+import React from "react";
+
 import "./App.scss";
 import logo from "../../assets/logo.svg";
-
 
 const App: React.FC = () => {
   return (
@@ -11,14 +12,11 @@ const App: React.FC = () => {
         </a>
       </div>
       <div className="app__inner">
-        <div className="filter">
-
-        </div>
-        <div className="tickets-list">
-        </div>
+        <div className="filter" />
+        <div className="tickets-list" />
       </div>
     </div>
   );
-}
+};
 
 export default App;
