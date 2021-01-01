@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useStoreon } from "storeon/react";
 
+import Ticket from "../Ticket";
+import State from "../../interfaces/State";
 import "./App.scss";
 import logo from "../../assets/logo.svg";
-import State from "../../interfaces/State";
 
 const App: React.FC = () => {
   const { dispatch, tickets, isLoading } = useStoreon<State>(
@@ -24,7 +25,13 @@ const App: React.FC = () => {
       </div>
       <div className="app__inner">
         <div className="filter" />
-        <div className="tickets-list">{isLoading && "Loading..."}</div>
+        <div className="tickets-list">
+          {isLoading
+            ? "Loading..."
+            : tickets.map((item, index) => {
+                return index < 5 && <Ticket ticketInfo={item} />;
+              })}
+        </div>
       </div>
     </div>
   );
