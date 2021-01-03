@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useStoreon } from "storeon/react";
 
 import Ticket from "../Ticket";
+import Sorting from "../Sorting";
 import State from "../../interfaces/State";
 import "./App.scss";
 import logo from "../../assets/logo.svg";
@@ -25,12 +26,15 @@ const App: React.FC = () => {
       </div>
       <div className="app__inner">
         <div className="filter" />
-        <div className="tickets-list">
-          {isLoading
-            ? "Loading..."
-            : tickets.map((item, index) => {
-                return index < 5 && <Ticket ticketInfo={item} />;
-              })}
+        <div className="app__content">
+          <Sorting />
+          <div className="tickets-list">
+            {isLoading
+              ? "Loading..."
+              : tickets.map((item, index) => {
+                  return index < 5 && <Ticket ticketInfo={item} />;
+                })}
+          </div>
         </div>
       </div>
     </div>

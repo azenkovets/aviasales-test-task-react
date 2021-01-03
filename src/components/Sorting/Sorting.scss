@@ -1,0 +1,39 @@
+.sorting {
+  margin-bottom: 20px;
+
+  &__tabs {
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__tab {
+    flex: 1 0 50%;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.6;
+    height: 50px;
+    letter-spacing: 0.5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    color: #4a4a4a;
+    border: 1px solid #dfe5ec;
+    background: #fff;
+    cursor: pointer;
+
+    &.is-active {
+      background: #2196f3;
+      color: #fff;
+      border-color: #2196f3;
+    }
+
+    &:last-child {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+  }
+}

@@ -8,6 +8,7 @@ const storeModule: StoreonModule<State> = (store) => {
     isLoading: true,
     error: false,
     tickets: [],
+    sortBy: "price",
   }));
 
   store.on("loadTickets", async () => {
@@ -16,6 +17,7 @@ const storeModule: StoreonModule<State> = (store) => {
     )
       .then((response) => response.json())
       .then((data) => data);
+
     const { tickets }: { tickets: Ticket[] } = await fetch(
       `https://front-test.beta.aviasales.ru/tickets?searchId=${searchId}`
     )
@@ -29,6 +31,13 @@ const storeModule: StoreonModule<State> = (store) => {
       ...state,
       isLoading: false,
       tickets,
+    };
+  });
+
+  store.on("changeSortBy", (state, sortBy) => {
+    return {
+      ...state,
+      sortBy,
     };
   });
 };
