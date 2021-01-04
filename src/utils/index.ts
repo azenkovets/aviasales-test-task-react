@@ -1,3 +1,5 @@
+import Ticket from "../interfaces/Ticket";
+
 export const formatPrice = (price: number): string => {
   return new Intl.NumberFormat("ru-RU").format(price);
 };
@@ -17,4 +19,35 @@ export const formatInterval = (date: string, duration: number): string => {
   const endMinutes = `0${endDate.getMinutes()}`.slice(-2);
 
   return `${startHours}:${startMinutes} - ${endHours}:${endMinutes}`;
+};
+
+export const sortTicketsByPrice = (a: Ticket, b: Ticket): number => {
+  if (a.price < b.price) {
+    return -1;
+  }
+  if (a.price > b.price) {
+    return 1;
+  }
+
+  return 0;
+};
+
+export const sortTicketsByDuration = (a: Ticket, b: Ticket): number => {
+  const durationA = a.segments.reduce((sum, item) => {
+    return sum + item.duration;
+  }, 0);
+
+  const durationB = b.segments.reduce((sum, item) => {
+    return sum + item.duration;
+  }, 0);
+
+  if (durationA < durationB) {
+    return -1;
+  }
+
+  if (durationA > durationB) {
+    return 1;
+  }
+
+  return 0;
 };

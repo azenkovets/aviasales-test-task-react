@@ -1,5 +1,6 @@
 import { createStoreon, StoreonModule } from "storeon";
 
+import { sortTicketsByPrice, sortTicketsByDuration } from "../utils";
 import State from "../interfaces/State";
 import Ticket from "../interfaces/Ticket";
 
@@ -30,13 +31,22 @@ const storeModule: StoreonModule<State> = (store) => {
     return {
       ...state,
       isLoading: false,
-      tickets,
+      tickets: [...tickets].sort(sortTicketsByPrice),
     };
   });
 
-  store.on("changeSortBy", (state, sortBy) => {
+  store.on("sortTickets", (state, sortBy) => {
+    const sortedTickets = state.tickets;
+
+    if (sortBy === "price") {
+      sortedTickets.sort(sortTicketsByPrice);
+    } else if (sortBy === "duration") {
+      sortedTickets.sort(sortTicketsByDuration);
+    }
+
     return {
       ...state,
+      tickets: sortedTickets,
       sortBy,
     };
   });

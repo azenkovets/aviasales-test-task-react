@@ -20,7 +20,7 @@ const Sorting: React.FC = () => {
 
   const handleClick = useCallback(
     (sortName) => {
-      dispatch("changeSortBy", sortName);
+      dispatch("sortTickets", sortName);
     },
     [dispatch]
   );

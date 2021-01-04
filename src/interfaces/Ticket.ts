@@ -14,7 +14,7 @@ interface Ticket {
       destination: string;
       date: string;
       stops: string[];
-      duration: number
+      duration: number;
     }
   ];
 }
