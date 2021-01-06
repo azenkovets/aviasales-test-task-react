@@ -9,11 +9,11 @@ const Sorting: React.FC = () => {
 
   const sortingOptions = [
     {
-      name: "price",
+      value: "price",
       label: "Самый дешевый",
     },
     {
-      name: "duration",
+      value: "duration",
       label: "Самый быстрый",
     },
   ];
@@ -30,14 +30,14 @@ const Sorting: React.FC = () => {
       <div className="sorting__tabs">
         {sortingOptions.map((item) => {
           const className = `sorting__tab ${
-            item.name === sortBy ? "is-active" : ""
+            item.value === sortBy ? "is-active" : ""
           }`;
 
           return (
             <button
               className={className}
-              key={item.name}
-              onClick={() => handleClick(item.name)}
+              key={item.value}
+              onClick={() => handleClick(item.value)}
               type="button"
             >
               {item.label}

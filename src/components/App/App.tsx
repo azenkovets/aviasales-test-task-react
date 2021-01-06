@@ -3,6 +3,7 @@ import { useStoreon } from "storeon/react";
 
 import Ticket from "../Ticket";
 import Sorting from "../Sorting";
+import Filter from "../Filter";
 import State from "../../interfaces/State";
 import "./App.scss";
 import logo from "../../assets/logo.svg";
@@ -25,7 +26,7 @@ const App: React.FC = () => {
         </a>
       </div>
       <div className="app__inner">
-        <div className="filter" />
+        <Filter />
         <div className="app__content">
           <Sorting />
           <div className="tickets-list">

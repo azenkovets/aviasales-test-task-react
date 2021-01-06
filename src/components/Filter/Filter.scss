@@ -1,0 +1,56 @@
+.filter {
+  width: 232px;
+  padding: 20px 0 10px 0;
+  align-self: flex-start;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+
+  &__header {
+    padding: 0 20px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.5px;
+    color: #4a4a4a;
+    text-transform: uppercase;
+  }
+  &__content {
+    margin-top: 10px;
+  }
+  &__item {
+    input {
+      display: none;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 400;
+      color: #4a4a4a;
+      padding: 10px 20px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #f1fcff;
+      }
+
+      &::before {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        border: 1px solid #9abbce;
+        border-radius: 2px;
+      }
+    }
+
+    input:checked + label::before {
+      background: url("../../assets/shape.svg") center center no-repeat;
+      border-color: #2196f3;
+    }
+  }
+}
