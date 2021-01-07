@@ -1,6 +1,11 @@
 import React from "react";
 
-import { formatPrice, formatDuration, formatInterval } from "../../utils";
+import {
+  formatPrice,
+  formatDuration,
+  formatInterval,
+  formatStopsText,
+} from "../../utils";
 import TicketInterface from "../../interfaces/Ticket";
 import "./Ticket.scss";
 
@@ -39,7 +44,7 @@ const Ticket: React.FC<Props> = ({ ticketInfo }: Props) => {
                 </div>
                 <div className="segment__column">
                   <div className="label">
-                    {item.stops && item.stops.length} пересадки
+                    {formatStopsText(item.stops.length)}
                   </div>
                   <div className="value">
                     {item.stops && item.stops.join(", ")}

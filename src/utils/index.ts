@@ -51,3 +51,20 @@ export const sortTicketsByDuration = (a: Ticket, b: Ticket): number => {
 
   return 0;
 };
+
+export const formatStopsText = (count: number): string => {
+  // @todo: We can assume that there are can't be more than 10 stops.
+  // Update the function if it is not so or implement kinda 'formatPlural' function.
+  switch (count) {
+    case 0:
+      return "Без пересадок";
+    case 1:
+      return "1 пересадка";
+    case 2:
+    case 3:
+    case 4:
+      return `${count} пересадки`;
+    default:
+      return `${count} пересадок`;
+  }
+};
