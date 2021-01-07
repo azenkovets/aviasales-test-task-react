@@ -1,3 +1,4 @@
+@import "../../styles/variables";
 .sorting {
   margin-bottom: 20px;
 
@@ -9,24 +10,24 @@
 
   &__tab {
     flex: 1 0 50%;
+    height: 50px;
     text-align: center;
     text-transform: uppercase;
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 1.6;
-    height: 50px;
+    font-size: $f-size-small;
+    font-weight: $f-weight-bold;
+    line-height: 20px;
     letter-spacing: 0.5px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
-    color: #4a4a4a;
+    color: $c-gray;
     border: 1px solid #dfe5ec;
-    background: #fff;
+    background-color: $c-white;
     cursor: pointer;
 
     &.is-active {
-      background: #2196f3;
-      color: #fff;
-      border-color: #2196f3;
+      background-color: $c-blue;
+      color: $c-white;
+      border-color: $c-blue;
     }
 
     &:last-child {
