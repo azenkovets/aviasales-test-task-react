@@ -1,5 +1,17 @@
 import Ticket from "../interfaces/Ticket";
 
+const sortGetComparisonValue = (ticket: Ticket, sortBy: string): number => {
+  if (sortBy === "price") {
+    return ticket[sortBy];
+  }
+  if (sortBy === "duration") {
+    return ticket.segments.reduce((sum, item) => {
+      return sum + item.duration;
+    }, 0);
+  }
+  return 0;
+};
+
 export const formatPrice = (price: number): string => {
   return new Intl.NumberFormat("ru-RU").format(price);
 };
@@ -19,18 +31,6 @@ export const formatInterval = (date: string, duration: number): string => {
   const endMinutes = `0${endDate.getMinutes()}`.slice(-2);
 
   return `${startHours}:${startMinutes} - ${endHours}:${endMinutes}`;
-};
-
-const sortGetComparisonValue = (ticket: Ticket, sortBy: string): number => {
-  if (sortBy === "price") {
-    return ticket[sortBy];
-  }
-  if (sortBy === "duration") {
-    return ticket.segments.reduce((sum, item) => {
-      return sum + item.duration;
-    }, 0);
-  }
-  return 0;
 };
 
 export const sortTickets = (sortBy: string) => {

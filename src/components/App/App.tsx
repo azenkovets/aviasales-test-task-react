@@ -1,18 +1,16 @@
 import React, { useEffect } from "react";
 import { useStoreon } from "storeon/react";
 
-import Ticket from "../Ticket";
-import Sorting from "../Sorting";
+import Loading from "../Loading";
 import Filter from "../Filter";
+import Sorting from "../Sorting";
+import TicketsList from "../TicketsList";
 import State from "../../interfaces/State";
 import "./App.scss";
 import logo from "../../assets/logo.svg";
 
 const App: React.FC = () => {
-  const { dispatch, tickets, isLoading } = useStoreon<State>(
-    "tickets",
-    "isLoading"
-  );
+  const { dispatch, isLoading } = useStoreon<State>("isLoading");
 
   useEffect(() => {
     dispatch("loadTickets");
@@ -26,17 +24,19 @@ const App: React.FC = () => {
         </a>
       </div>
       <div className="app__inner">
-        <Filter />
-        <div className="app__content">
-          <Sorting />
-          <div className="tickets-list">
-            {isLoading
-              ? "Loading..."
-              : tickets.map((item, index) => {
-                  return index < 5 && <Ticket ticketInfo={item} />;
-                })}
+        {isLoading ? (
+          <div className="app__loading">
+            <Loading />
           </div>
-        </div>
+        ) : (
+          <>
+            <Filter />
+            <div className="app__content">
+              <Sorting />
+              <TicketsList />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
