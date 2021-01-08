@@ -21,35 +21,24 @@ export const formatInterval = (date: string, duration: number): string => {
   return `${startHours}:${startMinutes} - ${endHours}:${endMinutes}`;
 };
 
-export const sortTicketsByPrice = (a: Ticket, b: Ticket): number => {
-  if (a.price < b.price) {
-    return -1;
+const sortGetComparisonValue = (ticket: Ticket, sortBy: string): number => {
+  if (sortBy === "price") {
+    return ticket[sortBy];
   }
-  if (a.price > b.price) {
-    return 1;
+  if (sortBy === "duration") {
+    return ticket.segments.reduce((sum, item) => {
+      return sum + item.duration;
+    }, 0);
   }
-
   return 0;
 };
 
-export const sortTicketsByDuration = (a: Ticket, b: Ticket): number => {
-  const durationA = a.segments.reduce((sum, item) => {
-    return sum + item.duration;
-  }, 0);
-
-  const durationB = b.segments.reduce((sum, item) => {
-    return sum + item.duration;
-  }, 0);
-
-  if (durationA < durationB) {
-    return -1;
-  }
-
-  if (durationA > durationB) {
-    return 1;
-  }
-
-  return 0;
+export const sortTickets = (sortBy: string) => {
+  return (a: Ticket, b: Ticket): number => {
+    return (
+      sortGetComparisonValue(a, sortBy) - sortGetComparisonValue(b, sortBy)
+    );
+  };
 };
 
 export const formatStopsText = (count: number): string => {
