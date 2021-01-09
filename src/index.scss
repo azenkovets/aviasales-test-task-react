@@ -1,11 +1,17 @@
 @import "./styles/variables";
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");
 
 * {
   box-sizing: border-box;
+  color: $c-gray;
 }
 
 body {
   font-family: "Open Sans", sans-serif;
   background-color: #e5e5e5;
+  font-size: $f-size-base;
+}
+
+h2 {
+  margin: 0;
+  font-size: $f-size-normal;
 }
