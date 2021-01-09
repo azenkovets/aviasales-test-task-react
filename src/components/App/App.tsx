@@ -5,12 +5,12 @@ import Loading from "../Loading";
 import Filter from "../Filter";
 import Sorting from "../Sorting";
 import TicketsList from "../TicketsList";
-import State from "../../interfaces/State";
+import IState from "../../interfaces/IState";
 import "./App.scss";
 import logo from "../../assets/logo.svg";
 
 const App: React.FC = () => {
-  const { dispatch, isLoading } = useStoreon<State>("isLoading");
+  const { dispatch, isLoading } = useStoreon<IState>("isLoading");
 
   useEffect(() => {
     dispatch("loadTickets");

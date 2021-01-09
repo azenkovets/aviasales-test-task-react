@@ -1,4 +1,4 @@
-interface Ticket {
+interface ITicket {
   price: number;
   carrier: string;
   segments: [
@@ -19,4 +19,4 @@ interface Ticket {
   ];
 }
 
-export default Ticket;
+export default ITicket;

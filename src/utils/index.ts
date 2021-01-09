@@ -1,8 +1,8 @@
 import { StoreonDispatch } from "storeon";
 
-import Ticket from "../interfaces/Ticket";
+import ITicket from "../interfaces/ITicket";
 
-const sortGetComparisonValue = (ticket: Ticket, sortBy: string): number => {
+const sortGetComparisonValue = (ticket: ITicket, sortBy: string): number => {
   if (sortBy === "price") {
     return ticket[sortBy];
   }
@@ -60,7 +60,7 @@ export const formatStopsText = (count: number): string => {
 };
 
 export const sortTickets = (sortBy: string) => {
-  return (a: Ticket, b: Ticket): number => {
+  return (a: ITicket, b: ITicket): number => {
     return (
       sortGetComparisonValue(a, sortBy) - sortGetComparisonValue(b, sortBy)
     );
@@ -69,7 +69,7 @@ export const sortTickets = (sortBy: string) => {
 
 export const fetchTicketsLongPoll = async (
   searchId: string,
-  loadedTickets: Ticket[],
+  loadedTickets: ITicket[],
   dispatch: StoreonDispatch<any>
 ): Promise<void> => {
   try {

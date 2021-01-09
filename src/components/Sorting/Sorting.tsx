@@ -1,11 +1,11 @@
 import React, { useCallback } from "react";
 import { useStoreon } from "storeon/react";
 
-import State from "../../interfaces/State";
+import IState from "../../interfaces/IState";
 import "./Sorting.scss";
 
 const Sorting: React.FC = () => {
-  const { dispatch, sortBy } = useStoreon<State>("sortBy");
+  const { dispatch, sortBy } = useStoreon<IState>("sortBy");
 
   const sortingOptions = [
     {

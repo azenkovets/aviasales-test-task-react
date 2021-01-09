@@ -6,11 +6,11 @@ import {
   formatInterval,
   formatStopsText,
 } from "../../utils";
-import TicketInterface from "../../interfaces/Ticket";
+import ITicket from "../../interfaces/ITicket";
 import "./Ticket.scss";
 
 interface Props {
-  ticketInfo: TicketInterface;
+  ticketInfo: ITicket;
 }
 
 const Ticket: React.FC<Props> = ({ ticketInfo }: Props) => {

@@ -1,11 +1,11 @@
 import React, { useCallback } from "react";
 import { useStoreon } from "storeon/react";
 
-import State from "../../interfaces/State";
+import IState from "../../interfaces/IState";
 import "./Filter.scss";
 
 const Filter: React.FC = () => {
-  const { dispatch, filters } = useStoreon<State>("filters");
+  const { dispatch, filters } = useStoreon<IState>("filters");
 
   const filterOptions = [
     {

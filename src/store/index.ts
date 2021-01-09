@@ -1,9 +1,9 @@
 import { createStoreon, StoreonModule } from "storeon";
 
 import { sortTickets, fetchTicketsLongPoll } from "../utils";
-import State from "../interfaces/State";
+import IState from "../interfaces/IState";
 
-const storeModule: StoreonModule<State> = (store) => {
+const storeModule: StoreonModule<IState> = (store) => {
   store.on("@init", () => ({
     isLoading: true,
     error: false,
@@ -80,6 +80,6 @@ const storeModule: StoreonModule<State> = (store) => {
   });
 };
 
-const store = createStoreon<State>([storeModule]);
+const store = createStoreon<IState>([storeModule]);
 
 export default store;
