@@ -1,7 +1,11 @@
 import { StoreonDispatch } from "storeon";
 
 import ITicket from "../interfaces/ITicket";
+import { API_BASE_URL } from "../constants";
 
+/**
+ * Helper function. Retrives value for array.prototype.sort() sorting comparison.
+ */
 const sortGetComparisonValue = (ticket: ITicket, sortBy: string): number => {
   if (sortBy === "price") {
     return ticket[sortBy];
@@ -15,9 +19,7 @@ const sortGetComparisonValue = (ticket: ITicket, sortBy: string): number => {
 };
 
 const loadTicketsPack = async (searchId: string) => {
-  const response = await fetch(
-    `https://front-test.beta.aviasales.ru/tickets?searchId=${searchId}`
-  );
+  const response = await fetch(`${API_BASE_URL}/tickets?searchId=${searchId}`);
   return response.json();
 };
 
@@ -27,11 +29,13 @@ export const formatPrice = (price: number): string => {
 
 export const formatDuration = (duration: number): string => {
   const hours = Math.floor(duration / 60);
-  const minutes = duration - hours * 60;
-  return `${hours}ч ${minutes > 9 ? minutes : `0${minutes}`}м`;
+  const minutes = `0${duration - hours * 60}`.slice(-2);
+  return `${hours}ч ${minutes}м`;
 };
 
 export const formatInterval = (date: string, duration: number): string => {
+  // @todo: day.js can be used here but i think it is not necessary
+  // cause we have a single place to work with dates.
   const startDate = new Date(date);
   const startHours = `0${startDate.getHours()}`.slice(-2);
   const startMinutes = `0${startDate.getMinutes()}`.slice(-2);
@@ -67,6 +71,9 @@ export const sortTickets = (sortBy: string) => {
   };
 };
 
+/**
+ * Implements long polling for fetching tickets and saves tickets in store.
+ */
 export const fetchTicketsLongPoll = async (
   searchId: string,
   loadedTickets: ITicket[],

@@ -2,33 +2,11 @@ import React, { useCallback } from "react";
 import { useStoreon } from "storeon/react";
 
 import IState from "../../interfaces/IState";
+import { STOPS_FILTER_OPTIONS } from "../../constants";
 import "./Filter.scss";
 
 const Filter: React.FC = () => {
   const { dispatch, filters } = useStoreon<IState>("filters");
-
-  const filterOptions = [
-    {
-      value: "all",
-      label: "Все",
-    },
-    {
-      value: 0,
-      label: "Без пересадок",
-    },
-    {
-      value: 1,
-      label: "1 пересадка",
-    },
-    {
-      value: 2,
-      label: "2 пересадки",
-    },
-    {
-      value: 3,
-      label: "3 пересадки",
-    },
-  ];
 
   const handleChange = useCallback(
     (e) => {
@@ -45,7 +23,7 @@ const Filter: React.FC = () => {
     <div className="filter">
       <div className="filter__header">Количество пересадок</div>
       <div className="filter__content">
-        {filterOptions.map((item) => {
+        {STOPS_FILTER_OPTIONS.map((item) => {
           return (
             <div className="filter__item" key={`filter--${item.value}`}>
               <input

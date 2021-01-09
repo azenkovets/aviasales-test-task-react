@@ -6,6 +6,7 @@ import {
   formatInterval,
   formatStopsText,
 } from "../../utils";
+import { CARRIERS_LOGO_URL } from "../../constants";
 import ITicket from "../../interfaces/ITicket";
 import "./Ticket.scss";
 
@@ -20,7 +21,7 @@ const Ticket: React.FC<Props> = ({ ticketInfo }: Props) => {
         <div className="ticket__price">{formatPrice(ticketInfo.price)} Р</div>
         <div className="ticket__carrier">
           <img
-            src={`//pics.avs.io/99/36/${ticketInfo.carrier}.png`}
+            src={`${CARRIERS_LOGO_URL}/${ticketInfo.carrier}.png`}
             alt={`${ticketInfo.carrier} logo`}
           />
         </div>

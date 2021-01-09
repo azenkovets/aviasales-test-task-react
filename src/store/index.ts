@@ -1,6 +1,7 @@
 import { createStoreon, StoreonModule } from "storeon";
 
 import { sortTickets, fetchTicketsLongPoll } from "../utils";
+import { STOPS_FILTER_VALUES, API_BASE_URL } from "../constants";
 import IState from "../interfaces/IState";
 
 const storeModule: StoreonModule<IState> = (store) => {
@@ -10,12 +11,12 @@ const storeModule: StoreonModule<IState> = (store) => {
     ticketsLoaded: [],
     tickets: [],
     sortBy: "price",
-    filters: ["all", 0, 1, 2, 3],
+    filters: STOPS_FILTER_VALUES,
   }));
 
   store.on("loadTickets", async () => {
     const { searchId }: { searchId: string } = await fetch(
-      "https://front-test.beta.aviasales.ru/search"
+      `${API_BASE_URL}/search`
     )
       .then((response) => response.json())
       .then((data) => data);
@@ -43,10 +44,10 @@ const storeModule: StoreonModule<IState> = (store) => {
   store.on("addFilter", (state, filterValue) => {
     let { filters } = state;
     if (filterValue === "all") {
-      filters = ["all", 0, 1, 2, 3];
+      filters = STOPS_FILTER_VALUES;
     } else {
       filters.push(+filterValue);
-      if (filters.length === 4) {
+      if (filters.length === STOPS_FILTER_VALUES.length - 1) {
         filters.push("all");
       }
     }
