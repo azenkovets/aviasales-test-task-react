@@ -2,9 +2,14 @@
 .ticket {
   width: 100%;
   padding: 20px;
+  margin-bottom: 20px;
   border-radius: 5px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
   background-color: $c-white;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   &__header {
     display: flex;
@@ -15,6 +20,7 @@
 
   &__carrier {
     flex-basis: calc(33.3% - 20px);
+    height: 36px;
   }
 
   &__price {

@@ -15,13 +15,22 @@ const storeModule: StoreonModule<IState> = (store) => {
   }));
 
   store.on("loadTickets", async () => {
-    const { searchId }: { searchId: string } = await fetch(
-      `${API_BASE_URL}/search`
-    )
-      .then((response) => response.json())
-      .then((data) => data);
+    try {
+      const { searchId }: { searchId: string } = await fetch(
+        `${API_BASE_URL}/search`
+      ).then((response) => response.json());
 
-    await fetchTicketsLongPoll(searchId, [], store.dispatch);
+      await fetchTicketsLongPoll(searchId, [], store.dispatch);
+    } catch (e) {
+      store.dispatch("error");
+    }
+  });
+
+  store.on("error", (state) => {
+    return {
+      ...state,
+      error: true,
+    };
   });
 
   store.on("setTickets", (state, tickets) => {

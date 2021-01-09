@@ -1,6 +1,6 @@
 export const API_BASE_URL = "https://front-test.beta.aviasales.ru";
 export const CARRIERS_LOGO_URL = "//pics.avs.io/99/36";
-export const TICKET_COUNT_LIMIT = 5;
+export const TICKETS_COUNT_LIMIT = 5;
 export const STOPS_FILTER_OPTIONS = [
   // @todo: Stops filter options are hardcoded for this task.
   // Change implementation if they needs to be dinamic.
