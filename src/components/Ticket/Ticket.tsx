@@ -10,24 +10,20 @@ import { CARRIERS_LOGO_URL } from "../../constants";
 import ITicket from "../../interfaces/ITicket";
 import "./Ticket.scss";
 
-interface Props {
-  ticketInfo: ITicket;
-}
-
-const Ticket: React.FC<Props> = ({ ticketInfo }: Props) => {
+const Ticket: React.FC<ITicket> = ({ price, carrier, segments }: ITicket) => {
   return (
     <div className="tickets-list__item ticket">
       <div className="ticket__header">
-        <div className="ticket__price">{formatPrice(ticketInfo.price)} Р</div>
+        <div className="ticket__price">{formatPrice(price)} Р</div>
         <div className="ticket__carrier">
           <img
-            src={`${CARRIERS_LOGO_URL}/${ticketInfo.carrier}.png`}
-            alt={`${ticketInfo.carrier} logo`}
+            src={`${CARRIERS_LOGO_URL}/${carrier}.png`}
+            alt={`${carrier} logo`}
           />
         </div>
       </div>
       <div className="ticket__segments">
-        {ticketInfo.segments.map((item) => {
+        {segments.map((item) => {
           return (
             <div className="ticket__segment segment">
               <div className="segment__column">
