@@ -16,7 +16,7 @@ const TicketsList: React.FC = () => {
       ) : (
         tickets.slice(0, TICKETS_COUNT_LIMIT).map((item, index) => {
           // The server doesn't provide any unique ID which we can use as a key.
-          const key = `ticket--${index}-${item.carrier}--${item.price}`;
+          const key = `ticket--${index}-${item.carrier}-${item.price}`;
           return (
             <Ticket
               price={item.price}

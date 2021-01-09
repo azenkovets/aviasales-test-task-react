@@ -1,22 +1,9 @@
+import ISegment from "./ISegment";
+
 interface ITicket {
   price: number;
   carrier: string;
-  segments: [
-    {
-      origin: string;
-      destination: string;
-      date: string;
-      stops: string[];
-      duration: number;
-    },
-    {
-      origin: string;
-      destination: string;
-      date: string;
-      stops: string[];
-      duration: number;
-    }
-  ];
+  segments: [ISegment, ISegment];
 }
 
 export default ITicket;
