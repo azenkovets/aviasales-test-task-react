@@ -1,8 +1,7 @@
 import { createStoreon, StoreonModule } from "storeon";
 
-import { sortTickets } from "../utils";
+import { sortTickets, fetchTicketsLongPoll } from "../utils";
 import State from "../interfaces/State";
-import Ticket from "../interfaces/Ticket";
 
 const storeModule: StoreonModule<State> = (store) => {
   store.on("@init", () => ({
@@ -21,12 +20,7 @@ const storeModule: StoreonModule<State> = (store) => {
       .then((response) => response.json())
       .then((data) => data);
 
-    const { tickets }: { tickets: Ticket[] } = await fetch(
-      `https://front-test.beta.aviasales.ru/tickets?searchId=${searchId}`
-    )
-      .then((response) => response.json())
-      .then((data) => data);
-    store.dispatch("setTickets", tickets);
+    await fetchTicketsLongPoll(searchId, [], store.dispatch);
   });
 
   store.on("setTickets", (state, tickets) => {
@@ -73,7 +67,7 @@ const storeModule: StoreonModule<State> = (store) => {
 
   store.on("filterTickets", (state, filters) => {
     const tickets = state.ticketsLoaded.filter((item) => {
-      return item.segments.some((element) => {
+      return item.segments.every((element) => {
         return filters.includes(element.stops.length);
       });
     });

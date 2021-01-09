@@ -1,3 +1,5 @@
+import { StoreonDispatch } from "storeon";
+
 import Ticket from "../interfaces/Ticket";
 
 const sortGetComparisonValue = (ticket: Ticket, sortBy: string): number => {
@@ -10,6 +12,13 @@ const sortGetComparisonValue = (ticket: Ticket, sortBy: string): number => {
     }, 0);
   }
   return 0;
+};
+
+const loadTicketsPack = async (searchId: string) => {
+  const response = await fetch(
+    `https://front-test.beta.aviasales.ru/tickets?searchId=${searchId}`
+  );
+  return response.json();
 };
 
 export const formatPrice = (price: number): string => {
@@ -33,14 +42,6 @@ export const formatInterval = (date: string, duration: number): string => {
   return `${startHours}:${startMinutes} - ${endHours}:${endMinutes}`;
 };
 
-export const sortTickets = (sortBy: string) => {
-  return (a: Ticket, b: Ticket): number => {
-    return (
-      sortGetComparisonValue(a, sortBy) - sortGetComparisonValue(b, sortBy)
-    );
-  };
-};
-
 export const formatStopsText = (count: number): string => {
   // @todo: We can assume that there are can't be more than 10 stops.
   // Update the function if it is not so or implement kinda 'formatPlural' function.
@@ -55,5 +56,30 @@ export const formatStopsText = (count: number): string => {
       return `${count} пересадки`;
     default:
       return `${count} пересадок`;
+  }
+};
+
+export const sortTickets = (sortBy: string) => {
+  return (a: Ticket, b: Ticket): number => {
+    return (
+      sortGetComparisonValue(a, sortBy) - sortGetComparisonValue(b, sortBy)
+    );
+  };
+};
+
+export const fetchTicketsLongPoll = async (
+  searchId: string,
+  loadedTickets: Ticket[],
+  dispatch: StoreonDispatch<any>
+): Promise<void> => {
+  try {
+    const { tickets, stop } = await loadTicketsPack(searchId);
+    if (!stop) {
+      fetchTicketsLongPoll(searchId, [...loadedTickets, ...tickets], dispatch);
+    } else {
+      dispatch("setTickets", [...loadedTickets, ...tickets]);
+    }
+  } catch (e) {
+    fetchTicketsLongPoll(searchId, [...loadedTickets], dispatch);
   }
 };

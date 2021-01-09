@@ -47,7 +47,7 @@ const Filter: React.FC = () => {
       <div className="filter__content">
         {filterOptions.map((item) => {
           return (
-            <div className="filter__item">
+            <div className="filter__item" key={`filter--${item.value}`}>
               <input
                 type="checkbox"
                 value={item.value}
