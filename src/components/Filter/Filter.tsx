@@ -3,7 +3,8 @@ import { useStoreon } from "storeon/react";
 
 import IState from "../../interfaces/IState";
 import { STOPS_FILTER_OPTIONS } from "../../constants";
-import "./Filter.scss";
+
+import styles from "./Filter.module.scss";
 
 const Filter: React.FC = () => {
   const { dispatch, filters } = useStoreon<IState>("filters");
@@ -20,12 +21,12 @@ const Filter: React.FC = () => {
   );
 
   return (
-    <div className="filter">
-      <div className="filter__header">Количество пересадок</div>
-      <div className="filter__content">
+    <div className={styles.filter}>
+      <div className={styles.filter__header}>Количество пересадок</div>
+      <div className={styles.filter__content}>
         {STOPS_FILTER_OPTIONS.map((item) => {
           return (
-            <div className="filter__item" key={`filter--${item.value}`}>
+            <div className={styles.filter__item} key={`filter--${item.value}`}>
               <input
                 type="checkbox"
                 value={item.value}

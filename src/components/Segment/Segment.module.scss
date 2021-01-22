@@ -1,8 +1,12 @@
-@import "../..//styles/variables";
+@import "../../styles/variables";
 
 .segment {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 10px;
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   &__column {
     width: 141px;

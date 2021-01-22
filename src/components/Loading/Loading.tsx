@@ -1,12 +1,12 @@
 import React from "react";
 
-import "./Loading.scss";
+import styles from "./Loading.module.scss";
 
 const Loading: React.FC = () => {
   return (
-    <svg className="spinner" viewBox="0 0 50 50">
+    <svg className={styles.spinner} viewBox="0 0 50 50">
       <circle
-        className="spinner__circle"
+        className={styles.spinner__circle}
         cx="25"
         cy="25"
         r="20"

@@ -6,7 +6,9 @@ import Filter from "../Filter";
 import Sorting from "../Sorting";
 import TicketsList from "../TicketsList";
 import IState from "../../interfaces/IState";
-import "./App.scss";
+
+import styles from "./App.module.scss";
+
 import logo from "../../assets/logo.svg";
 
 const App: React.FC = () => {
@@ -21,30 +23,30 @@ const App: React.FC = () => {
 
   if (error) {
     return (
-      <div className="app app--unavailable">
+      <div className={`${styles.app} ${styles["app--unavailable"]}`}>
         <h2>Cервис временно недоступен.</h2>
       </div>
     );
   }
 
   return (
-    <div className="app">
-      <header className="app__header">
+    <div className={styles.app}>
+      <header className={styles.app__header}>
         <a href="https://www.aviasales.ru/" target="_blank" rel="noreferrer">
           <img src={logo} alt="Aviasales logo" />
         </a>
       </header>
-      <div className="app__inner">
+      <div className={styles.app__inner}>
         {isLoading ? (
-          <div className="app__loading">
+          <div className={styles.app__loading}>
             <Loading />
           </div>
         ) : (
           <>
-            <aside className="app__sidebar">
+            <aside className={styles.app__sidebar}>
               <Filter />
             </aside>
-            <main role="main" className="app__content">
+            <main role="main" className={styles.app__content}>
               <Sorting />
               <TicketsList />
             </main>

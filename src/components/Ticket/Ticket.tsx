@@ -4,21 +4,22 @@ import Segment from "../Segment";
 import { formatPrice } from "../../utils";
 import { CARRIERS_LOGO_URL } from "../../constants";
 import ITicket from "../../interfaces/ITicket";
-import "./Ticket.scss";
+
+import styles from "./Ticket.module.scss";
 
 const Ticket: React.FC<ITicket> = ({ price, carrier, segments }: ITicket) => {
   return (
-    <div className="tickets-list__item ticket">
-      <div className="ticket__header">
-        <div className="ticket__price">{formatPrice(price)} Р</div>
-        <div className="ticket__carrier">
+    <div className={styles.ticket}>
+      <div className={styles.ticket__header}>
+        <div className={styles.ticket__price}>{formatPrice(price)} Р</div>
+        <div className={styles.ticket__carrier}>
           <img
             src={`${CARRIERS_LOGO_URL}/${carrier}.png`}
             alt={`${carrier} logo`}
           />
         </div>
       </div>
-      <div className="ticket__segments">
+      <div className={styles.ticket__segments}>
         {segments.map((item, index) => {
           // The server doesn't provide any unique ID which we can use as a key.
           const key = `segment--${index}-${item.origin}-${item.destination}`;

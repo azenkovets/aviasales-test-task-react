@@ -3,7 +3,8 @@ import { useStoreon } from "storeon/react";
 
 import IState from "../../interfaces/IState";
 import { SORTING_OPTIONS } from "../../constants";
-import "./Sorting.scss";
+
+import styles from "./Sorting.module.scss";
 
 const Sorting: React.FC = () => {
   const { dispatch, sortBy } = useStoreon<IState>("sortBy");
@@ -16,11 +17,11 @@ const Sorting: React.FC = () => {
   );
 
   return (
-    <div className="sorting">
-      <div className="sorting__tabs">
+    <div className={styles.sorting}>
+      <div className={styles.sorting__tabs}>
         {SORTING_OPTIONS.map((item) => {
-          const className = `sorting__tab ${
-            item.value === sortBy ? "is-active" : ""
+          const className = `${styles.sorting__tab} ${
+            item.value === sortBy ? styles["is-active"] : ""
           }`;
 
           return (
